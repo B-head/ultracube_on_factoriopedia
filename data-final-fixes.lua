@@ -31,3 +31,6 @@ for _, type_name in ipairs(types) do
   end
 end
 log(string.format("[fp:unhide] summary unhidden=%d kept_hidden=%d", unhidden, kept_hidden))
+
+-- reachable な recipe を target item/fluid と統合 (重複エントリ解消)
+require("merge_recipes").apply(reachable)
