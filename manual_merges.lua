@@ -10,6 +10,8 @@ return {
   -- cube-n-dimensional-widget の複数 variant のうち -0 を merge 元とする。
   -- -1 は触らず alt recipe として自動表示させる。
   ["cube-n-dimensional-widget-0"] = "cube-n-dimensional-widget",
+  ["cube-basic-matter-unit-0"] = "cube-basic-matter-unit",
+  ["cube-basic-contemplation-unit-0"] = "cube-basic-contemplation-unit",
 
   -- cube-rare-metal-crushing は cube-refined-rare-metals item に merge したいが、
   -- Ultracube に既に "cube-refined-rare-metals" 名の recipe が存在し、その results は

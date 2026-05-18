@@ -1,5 +1,10 @@
 -- CUBE tech を起点にして、Ultracube 進行ルートで「触れる」prototype 集合を計算する。
 --
+-- Seed:
+--   CUBE 分類された tech とその unlock-recipe
+--   初期から有効なレシピ (enabled ~= false で hidden = false)
+--     -> tech に紐付かないスターターレシピ (例: 基本作業台で最初から作れるもの) を拾う
+--
 -- 波及ルール:
 --   tech.effects (unlock-recipe)  -> recipe
 --   recipe.ingredients / .results -> item, fluid
@@ -60,6 +65,23 @@ function M.compute()
           reachable.recipe[effect.recipe] = true
         end
       end
+    end
+  end
+
+  -- Seed: 初期から有効なレシピ (tech 未経由で game start から使える)
+  -- enabled は省略時 true。
+  -- 除外:
+  --   hidden=true             プレイヤーに見えないレシピ
+  --   hide_from_player_crafting=true
+  --                           手動クラフト不可な「ダミー / 内部メカニクス用」レシピ
+  --                           (例: Ultracube の cube-qubit-consume-* は results が
+  --                           全部 amount=0 の量子デコーダー内部用レシピで、
+  --                           Factoriopedia に出すと「0× 〜」だらけで意味不明になる)
+  for rname, recipe in pairs(data.raw.recipe or {}) do
+    if recipe.enabled ~= false
+        and not recipe.hidden
+        and not recipe.hide_from_player_crafting then
+      reachable.recipe[rname] = true
     end
   end
 
