@@ -4,6 +4,8 @@
 --   fluid / recipe / ammo-category。
 -- defines.prototypes は data ステージで利用可能なため、モジュールロード時に展開する。
 
+local log = require("debug_log")
+
 local M = {}
 
 local function build_types()

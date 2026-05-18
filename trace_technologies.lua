@@ -9,6 +9,8 @@
 --
 -- 仕組みの背景は memory の reference_ultracube_progression.md 参照。
 
+local log = require("debug_log")
+
 local M = {}
 
 local CUBE_SCIENCE_PACKS = {

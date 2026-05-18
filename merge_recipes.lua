@@ -23,6 +23,8 @@
 -- cube-recipe 側:
 --   - hidden_in_factoriopedia = true (Factoriopedia から消す。content は shadow 経由で見える)
 
+local log = require("debug_log")
+
 local M = {}
 
 local function name_of(entry)

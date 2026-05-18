@@ -1,3 +1,5 @@
+local log = require("debug_log")
+
 -- 名前 conflict があるレシピのオプショナルなリネーム。
 -- reachable 計算 / merge より前に行う必要がある (tech effects の参照を書き換えるため)。
 if settings.startup["ultracube-on-factoriopedia-rename-refined-rare-metals-recipe"].value then

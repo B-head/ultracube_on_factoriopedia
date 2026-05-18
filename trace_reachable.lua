@@ -15,6 +15,8 @@
 --
 -- 固定点まで反復して BFS 的に拡張する。
 
+local log = require("debug_log")
+
 local M = {}
 
 local function name_of(entry)

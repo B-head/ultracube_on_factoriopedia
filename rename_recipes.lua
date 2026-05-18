@@ -8,6 +8,8 @@
 --
 -- 注意: 旧名で recipe を参照する他 mod は壊れる。設定で無効化できるようにしてある。
 
+local log = require("debug_log")
+
 local M = {}
 
 local function rewrite_tech_effects(old_name, new_name)
