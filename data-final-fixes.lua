@@ -13,8 +13,10 @@ reachable_module.trace(reachable)
 -- 一覧に出てしまう。Ultracube のダミーアイテム (cube-qubits 等、recipe ingredient
 -- としてのみ存在し実体無し) は hidden=true で完全に隠す意図なのでそれを尊重する。
 local types = require("factoriopedia_inspect").types
+local manual_unhides = require("manual_unhides")
 
 local unhidden = 0
+local manual_unhidden = 0
 local kept_hidden = 0
 local kept_hidden_flag = 0
 for _, type_name in ipairs(types) do
@@ -24,9 +26,13 @@ for _, type_name in ipairs(types) do
   if protos then
     for name, proto in pairs(protos) do
       if proto.hidden_in_factoriopedia then
-        if proto.hidden then
+        if manual_unhides[name] ~= nil then
+          proto.hidden_in_factoriopedia = false
+          log(string.format("[fp:unhide] %s :: %s (existing %s overridden, handles unhide)", type_name, name, name))
+          manual_unhidden = manual_unhidden + 1
+        elseif proto.hidden then
           kept_hidden_flag = kept_hidden_flag + 1
-        elseif reachable_set and reachable_set[name] then
+        elseif (reachable_set and reachable_set[name]) or proto.parameter then
           proto.hidden_in_factoriopedia = false
           log(string.format("[fp:unhide] %s :: %s", type_name, name))
           unhidden = unhidden + 1
@@ -37,8 +43,8 @@ for _, type_name in ipairs(types) do
     end
   end
 end
-log(string.format("[fp:unhide] summary unhidden=%d kept_hidden=%d kept_hidden_flag=%d",
-  unhidden, kept_hidden, kept_hidden_flag))
+log(string.format("[fp:unhide] summary unhidden=%d manual_unhidden=%d kept_hidden=%d kept_hidden_flag=%d",
+  unhidden, manual_unhidden, kept_hidden, kept_hidden_flag))
 
 -- reachable な recipe を target item/fluid と統合 (重複エントリ解消)
 require("merge_recipes").apply(reachable)
