@@ -1,0 +1,17 @@
+# VS Code user-specific settings (FMTK が workspaceStorage の絶対パスを書き込むため)
+.vscode/settings.json
+
+# Claude Code local permissions
+.claude/settings.local.json
+
+# Built mod packages
+*.zip
+
+# OS metadata
+Thumbs.db
+.DS_Store
+
+# Editor swap files
+*.swp
+*.swo
+*~
