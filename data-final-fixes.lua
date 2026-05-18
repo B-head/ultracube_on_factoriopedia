@@ -1,3 +1,10 @@
+-- 名前 conflict があるレシピのオプショナルなリネーム。
+-- reachable 計算 / merge より前に行う必要がある (tech effects の参照を書き換えるため)。
+if settings.startup["ultracube-on-factoriopedia-rename-refined-rare-metals-recipe"].value then
+  require("rename_recipes").rename(
+    "cube-refined-rare-metals", "cube-refined-rare-metals-conversion")
+end
+
 -- Ultracube 進行ルートに乗っている tech を分類してログ出力 (調査用)
 require("trace_technologies").trace_ultracube()
 

@@ -6,23 +6,12 @@
 -- shadow recipe (target 名) が無ければ作成し、ターゲット item/fluid と auto-merge させる。
 -- cube-recipe 側は hidden_in_factoriopedia = true で隠される。
 
-return {
+local merges = {
   -- cube-n-dimensional-widget の複数 variant のうち -0 を merge 元とする。
   -- -1 は触らず alt recipe として自動表示させる。
   ["cube-n-dimensional-widget-0"] = "cube-n-dimensional-widget",
   ["cube-basic-matter-unit-0"] = "cube-basic-matter-unit",
   ["cube-basic-contemplation-unit-0"] = "cube-basic-contemplation-unit",
-
-  -- cube-rare-metal-crushing は cube-refined-rare-metals item に merge したいが、
-  -- Ultracube に既に "cube-refined-rare-metals" 名の recipe が存在し、その results は
-  -- cube-rare-metals (リサイクル系 recipe で自分の名前と一致しない出力)。
-  -- このため:
-  --   - 既存 recipe は同名 item と auto-merge しない (results 不一致)
-  --   - shadow も同名で作れない (name conflict)
-  --   - 既存 recipe の content を上書きすると本来のリサイクル機能が壊れる
-  -- Ultracube 側で recipe 名と results を整合させるべき (recipe 名を変えるか
-  -- 結果に cube-refined-rare-metals を含めるか) で、こちらでは対応不能。
-  -- ["cube-rare-metal-crushing"] = "cube-refined-rare-metals",
 
   ["cube-construction-robot"] = "construction-robot",
   ["cube-logistic-robot"] = "cube-logistic-robot-0",
@@ -32,3 +21,13 @@ return {
   ["cube-sulfur"] = "sulfur",
   ["cube-sulfuric-acid"] = "sulfuric-acid",
 }
+
+-- cube-rare-metal-crushing は cube-refined-rare-metals item に merge したい。
+-- 元の "cube-refined-rare-metals" 名 recipe (results = cube-rare-metals) と
+-- name conflict するため、対応する rename 設定が有効なときだけ追加する。
+-- rename は data-final-fixes.lua で行われる (rename_recipes.lua 参照)。
+if settings.startup["ultracube-on-factoriopedia-rename-refined-rare-metals-recipe"].value then
+  merges["cube-rare-metal-crushing"] = "cube-refined-rare-metals"
+end
+
+return merges
