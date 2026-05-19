@@ -21,7 +21,7 @@ reachable_module.trace(reachable)
 -- 独立フラグで、hidden=true でも hidden_in_factoriopedia=false だと Factoriopedia
 -- 一覧に出てしまう。Ultracube のダミーアイテム (cube-qubits 等、recipe ingredient
 -- としてのみ存在し実体無し) は hidden=true で完全に隠す意図なのでそれを尊重する。
-local types = require("factoriopedia_inspect").types
+local types = require("hideable_types").types
 local manual_unhides = require("manual_unhides")
 
 local unhidden = 0
