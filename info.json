@@ -1,14 +1,16 @@
 {
   "name": "ultracube_on_factoriopedia",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "title": "Ultracube on Factoriopedia",
   "author": "b_head",
   "contact": "b_head@outlook.jp",
-  "homepage": "",
   "factorio_version": "2.0",
   "dependencies": [
     "base >= 2.0.8",
     "Ultracube >= 0.7.0"
   ],
-  "description": "Makes Ultracube prototypes visible in Factoriopedia."
+  "description": "Restores Factoriopedia entries for prototypes that are reachable on the Ultracube progression route, while keeping unused vanilla prototypes hidden. Merges duplicate recipe and item/fluid pages so each entry shows up once.",
+  "package": {
+    "readme": "mod-portal.md"
+  }
 }

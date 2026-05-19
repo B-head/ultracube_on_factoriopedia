@@ -1,5 +1,8 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.1.0
-Date: 2026-05-18
+Version: 1.0.0
+Date: 2026-05-19
   Features:
-    - Initial scaffold.
+    - Restore Factoriopedia visibility for prototypes reachable on the Ultracube progression route (recipes, items, fluids, entities, tiles, technologies). Unrelated vanilla prototypes stay hidden.
+    - Merge duplicate Factoriopedia pages: when a recipe and its single result share an icon, the recipe page is folded into the item/fluid page. Multi-result recipes that name themselves after one of their results get a main_product hint.
+    - Manual override tables (manual_unhides.lua, manual_merges.lua) for cases the automatic logic cannot resolve.
+    - Optional rename of the cube-refined-rare-metals conversion recipe so the crushing recipe can merge with the refined rare metals item page. Toggleable in startup settings; ships with a migration for existing saves.
